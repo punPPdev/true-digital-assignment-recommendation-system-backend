@@ -18,7 +18,7 @@ st.title("🎬 Netflix Movie/TV shows Recommendation System")
 def fetch_options():
     
     try:
-        response = requests.get("http://127.0.0.1:8000/get-movie-tv-show-data")
+        response = requests.get("f{API_URL}/get-movie-tv-show-data")
         return response.json()
     except Exception as e:
         st.error(f"Error connecting to backend: {e}")
