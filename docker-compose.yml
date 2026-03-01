@@ -40,4 +40,4 @@ services:
       # CRUCIAL: Docker internal network routing!
       - API_URL=http://backend:8000 
     depends_on:
-      - api
+      - backend
