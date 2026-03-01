@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: netflix-recommendation-system
+    ports:
+      - "8000:8000"
+    environment:
+      - MLFLOW_TRACKING_URI=http://mlflow:5000
+    volumes:
+      - ./mlruns:/app/mlruns
+    depends_on:
+        mlflow:
+          condition: service_healthy
+    command: python run train.py
+
+  mlflow:
+    image: ghcr.io/mlflow/mlflow
+    container_name: mlflow
+    ports:
+      - "5000:5000"
+    volumes:
+      # Map local mlruns folder so models persist between restarts
+      - ./mlruns:/app/mlruns
+    working_dir: /app
+    command: >
+      mlflow server
+      --serve-artifacts
+      --host 0.0.0.0
+      --port 5000
+    healthcheck:
+      interval: 5s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
