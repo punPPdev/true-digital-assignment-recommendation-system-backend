@@ -89,10 +89,7 @@ def get_movie_tv_show_data():
     
 @app.post("/recommend")
 def get_recommendations(request: RecommendationRequest):
-    """
-    The API no longer does ANY math. It just formats the request into a DataFrame
-    and passes it to the MLflow PyFunc model.
-    """
+
     global mlflow_pyfunc_model
 
     # Format the Pydantic request into a Pandas DataFrame for MLflow

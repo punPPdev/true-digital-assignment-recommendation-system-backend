@@ -1,3 +1,4 @@
+# STAGE 2: THE BUILDER (PRODUCTION)
 FROM python:3.12-slim AS builder
 
 
@@ -9,33 +10,24 @@ ENV PATH="/opt/venv/bin:$PATH"
 
 RUN pip install --no-cache-dir streamlit requests pandas
 
-# ==========================================
+
 # STAGE 2: THE RUNNER (PRODUCTION)
-# ==========================================
 FROM python:3.12-slim
 
-# Set up the working directory and hand ownership to the non-root user
 WORKDIR /app
 
-# Configure Streamlit for Production (Disables telemetry, removes warning prompts)
 ENV STREAMLIT_SERVER_PORT=8501 \
     STREAMLIT_SERVER_ADDRESS=0.0.0.0 \
     STREAMLIT_SERVER_HEADLESS=true \
     STREAMLIT_BROWSER_GATHER_USAGE_STATS=false \
     PATH="/opt/venv/bin:$PATH"
 
-# Copy the pre-built virtual environment from the builder stage
 COPY --from=builder /opt/venv /opt/venv
 
-# Switch to the secure, non-root user BEFORE copying the application code
 USER appuser
 
-# Copy the frontend application code
-# Assuming your Streamlit code is in src/frontend/
 COPY frontend_prototype/ /app/frontend_prototype/
 
-# Expose the standard Streamlit port
 EXPOSE 8501
 
-# Run the Streamlit application
 CMD ["streamlit", "run", "frontend_prototype/app.py"]
