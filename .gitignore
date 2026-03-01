@@ -1,5 +1,6 @@
 # ignore virtual environment
 .venv
+.venv_frontend/
 
 # ignore cache file
 __pycache__
