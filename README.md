@@ -8,9 +8,9 @@ This repository for Netflix recommendation system assessment to show how design 
 
 ## 🤖 Approach and Method to Get Recommend
 
-I utilized **TF-IDF Vectorization** and **Cosine Similarity** to match user nearset to content that similar to user content.
+I utilized **TF-IDF Vectorization** and **Cosine Similarity** to match user nearest to content that similar to user content.
 
-![Alt text for the image](./media/content-base-filtering-concept.png)
+![content base filtering concept image](./media/content-base-filtering-concept.png )
 
 ## 🏗 ML System Architecture Overview
 
@@ -27,7 +27,7 @@ This system is built using a microservice architecture, separating the MLOps tra
 
 ![Alt text for the image](./media/list-all-api.png)
 
-### Example input how api works
+### Example input/output how api works
 * Endpoint: **POST** /recommend
 * Request Body
 ``` json
@@ -77,7 +77,31 @@ the prototype UI show how the application work
 
 ![Alt text for the image](./media/show-recommend-result-page.png)
 
-## For development
+## 💭How to improve in the future
+
+The system on this repository still on prototype concept, it need a lot to imporve the system.
+
+**Model Improvement** to improve accurate recommendation
+* **Collaborative Filtering** The implmented model on this repository solved only cold start problem (Not quite accurate), but for another problem like warm sart problem, this system still not handle this.
+* **Regression Model** to predict rating list of recommned movies and tv shows that user will give.
+* **Classification Model** After sent list of recommned movies and tv shows to user, predict user will watch or not.
+* **Two-Tower Neural Network Model** when need to scale for handle million of users, TF-IDF Vectorization and Cosine Similarity can not handle this scale, must develop Two-Tower neural network model to predict recommend value.
+
+**System Improvement**
+* **Vector Database** for search engine to serach movies and tv showns in milli seconds
+* **Relational Database** to store user information or history, these information will make easier to predict what content user will like.
+* **Feast** for feature store
+* **S3 storage** for store dataset and data versioning
+* **Frontend Framework** moving from prototype framework like streamlit to enterpise frontend framework such as React, Angular, etc.
+
+* **infrastructure Improvement**
+** **CI/CD/CT** for automate intregation test, easily deployment and continuous training, the model will refresh easily when it need to retrain on time.
+** **Kubernetes** to horizental scale service and handle milions of users in future
+** **Observability** to check ML system performance by checking metrics, logs and tracing of the service
+** **ML monitoring** to check ML behvior for example data diff, concept diff, etc.
+
+
+## For Development
 
 * You can start application by run via docker compose after you cloned this repository
 
@@ -85,7 +109,7 @@ the prototype UI show how the application work
 docker compose up --build
 ```
 
-### Backend development
+### Backend Development
 
 1. Create virtual environment for backend. 
 
@@ -98,7 +122,7 @@ py -3.12 -m venv .venv
 pip install requirements.txt
 ```
 
-## Frontend development
+## Frontend Development
 
 1. Create virtual environment for frontend. 
 
@@ -111,7 +135,7 @@ py -3.12 -m venv .venv
 pip install requirement.frontend.txt
 ```
 
-Experiment
+## Experiment
 
 1. Create virtual environment for experiment. 
 
