@@ -10,7 +10,7 @@ This repository for Netflix recommendation system assessment to show how design 
 
 I utilized **TF-IDF Vectorization** and **Cosine Similarity** to match user nearset to content that similar to user content.
 
-![Alt text for the image](media\content-base-filtering-concept.png)
+![Alt text for the image](./media/content-base-filtering-concept.png)
 
 ## 🏗 ML System Architecture Overview
 
@@ -21,11 +21,11 @@ This system is built using a microservice architecture, separating the MLOps tra
 * **Frontend UI:** `Streamlit` for interactive user querying and result presentation.
 * **Deployment:** Multi-stage `Docker Compose` to orchestrates service.
 
-![Alt text for the image](media\ml-system-overview.png)
+![Alt text for the image](./media/ml-system-overview.png)
 
 ### API Layer
 
-![Alt text for the image](media\list-all-api.png)
+![Alt text for the image](./media/list-all-api.png)
 
 ### Example input how api works
 * Endpoint: **POST** /recommend
@@ -44,7 +44,7 @@ This system is built using a microservice architecture, separating the MLOps tra
 }
 ```
 
-![Alt text for the image](media\netflix-recommendation-system-api-diagram.png)
+![Alt text for the image](./media/netflix-recommendation-system-api-diagram.png)
 
 ## 📂 Repository Structure
 
@@ -71,11 +71,11 @@ the prototype UI show how the application work
 
 * ### Home Page
 
-![Alt text for the image](media\ui-home-page.png)
+![Alt text for the image](./media/ui-home-page.png)
 
 * ### Home Page
 
-![Alt text for the image](media\show-recommend-result-page.png)
+![Alt text for the image](./media/show-recommend-result-page.png)
 
 ## For development
 
