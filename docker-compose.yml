@@ -15,7 +15,7 @@ services:
       timeout: 5s
       retries: 5
       start_period: 10s
-    command: mlflow server --serve-artifacts --host 0.0.0.0 --port 5000
+    command: mlflow server --serve-artifacts --host 0.0.0.0 --port 5000 --disable-security-middleware
 
   backend:
     build:
