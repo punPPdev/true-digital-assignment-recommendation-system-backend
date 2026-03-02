@@ -7,6 +7,7 @@ import requests
 # CRUCIAL: Read the API URL from environment variables.
 # This allows it to work both locally and inside Docker without changing code.
 API_URL = os.getenv("API_URL", "http://localhost:8000")
+print(API_URL)
 
 st.set_page_config(layout="wide")
 
@@ -18,7 +19,7 @@ st.title("🎬 Netflix Movie/TV shows Recommendation System")
 def fetch_options():
     
     try:
-        response = requests.get("f{API_URL}/get-movie-tv-show-data")
+        response = requests.get(f"{API_URL}/get-movie-tv-show-data")
         return response.json()
     except Exception as e:
         st.error(f"Error connecting to backend: {e}")
