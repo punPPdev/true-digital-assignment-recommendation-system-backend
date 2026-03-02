@@ -5,6 +5,8 @@ services:
     container_name: mlflow
     ports:
       - "5000:5000"
+    environment:
+      - MLFLOW_HTTP_SERVER_ALLOWED_HOSTS=mlflow,localhost,127.0.0.1
     volumes:
       # Map local mlruns folder so models persist between restarts
       - ./mlruns:/app/mlruns
@@ -19,19 +21,21 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: netflix-recommendation-system-backend
+    container_name: backend
     ports:
       - "8000:8000"
     environment:
       - MLFLOW_TRACKING_URI=http://mlflow:5000
     depends_on:
       - mlflow
+    command: >
+      sh -c "python train.py && uvicorn main:app --host 0.0.0.0 --port 8000"
         
   frontend:
     build:
       context: .
       dockerfile: Dockerfile.frontend
-    container_name: netflix-recommendation-system-frontend
+    container_name: frontend
     ports:
       - "8501:8501"
     environment:

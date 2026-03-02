@@ -86,6 +86,7 @@ The system on this repository still on prototype concept, it need a lot to impor
 * **Regression Model** to predict rating list of recommned movies and tv shows that user will give.
 * **Classification Model** After sent list of recommned movies and tv shows to user, predict user will watch or not.
 * **Two-Tower Neural Network Model** when need to scale for handle million of users, TF-IDF Vectorization and Cosine Similarity can not handle this scale, must develop Two-Tower neural network model to predict recommend value.
+* **LLM/Agentic AI model** LLM or Agentic AI can analysis and understand unstructure txt data and long text data, it can understand human behavior for example movie describtion, etc, then it will give and improve more accurate to recommend content to user. 
 
 **System Improvement**
 * **Vector Database** for search engine to serach movies and tv showns in milli seconds
@@ -103,11 +104,13 @@ The system on this repository still on prototype concept, it need a lot to impor
 
 ## For Development
 
-* You can start application by run via docker compose after you cloned this repository
+* You can start application by run via docker compose after you cloned this repository.
 
 ```bash
 docker compose up --build
 ```
+
+* Go to frontend home page. <a>localhost:8501</a>
 
 ### Backend Development
 
@@ -120,6 +123,11 @@ py -3.12 -m venv .venv
 2. Install python dependencies for backend environment
 ```bash
 pip install requirements.txt
+```
+
+3. Start backend server.
+```bash
+uvicorn main:app --host 0.0.0.0 --port 8000
 ```
 
 ## Frontend Development
@@ -135,6 +143,13 @@ py -3.12 -m venv .venv
 pip install requirement.frontend.txt
 ```
 
+3. Start frontend server.
+```bash
+streamlit run frontend_prototype/app.py --server.port 8501
+```
+
+4. Go to jupyter labe application -> <a>localhost:8501</a>
+
 ## Experiment
 
 1. Create virtual environment for experiment. 
@@ -147,4 +162,21 @@ py -3.12 -m venv .venv
 
 ```bash
 pip install requirement.frontend.txt
+```
+
+3. Start experiment server.
+```bash
+jupyter lab
+```
+
+4. Go to jupyter labe application -> <a>localhost:8888</a>
+
+## MLFlow
+
+```bash
+docker pull ghcr.io/mlflow/mlflow:latest
+```
+
+```bash
+docker run -d -p 5000:5000 --name mlflow_server ghcr.io/mlflow/mlflow:latest mlflow server --host 0.0.0.0 --port 5000
 ```
